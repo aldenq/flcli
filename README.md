@@ -3,7 +3,7 @@ Further-Link Command Line Interface
 
 
 
-The goal of this project is to allow access to Further-link via a command line interface. This can be used to allow you to remotely run projects on your Pi-top.
+The goal of this project is to allow access to Further-link via a command line interface. This can allow you to remotely run projects on your Pi-top.
 
 
 
