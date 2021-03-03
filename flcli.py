@@ -27,7 +27,7 @@ flink_port = "8028"
 
 websurl = "wss://" + ip + ":" + flink_port
 #.further-link.pi-top.com
-
+    
 
         
 def get_code(file): #retrieves code from specified file and formats it to be sent
@@ -53,7 +53,7 @@ def parse_message(message): #function borrowed from further-link(/usr/lib/pt-fur
 
     return msg_type, msg_data
 
-def fl_format(m_type,m_data):
+def fl_format(m_type,m_data): #format stuff into further link format
     output = {}
     output["type"] = m_type
     output["data"] = m_data
