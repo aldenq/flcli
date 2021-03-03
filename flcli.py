@@ -16,8 +16,9 @@ import sys
 import subprocess
 import fileinput
 
-
-    
+if len(sys.argv) == 1:
+    print("further-link command line interface\nexample:\n   python3.8 flcli.py 192.168.0.1 helloworld.py\nadditional info can by found on the github at https://github.com/aldenq/flcli")
+    exit()
 
 ip = sys.argv[1].replace("-",".") #string replace is just to accommodate ip's in the format of a-b-c-d and a.b.c.d
 file = sys.argv[2]
