@@ -28,6 +28,4 @@ while print statments will be sent back to the user, at the moment it does not a
  python3.8 flcli.py 192.168.0.1 helloworld.py
 
 
- -c flag can be used to show syntax errors
- 
- python3.8 flcli.py 192.168.0.1 helloworld.py -c
+
