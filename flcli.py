@@ -79,7 +79,7 @@ async def send_and_run(): #takes python file and sends it over for the pi-top to
             if m_type == "stdout" or m_type == "stderr": 
                 print(m_data["output"])
             
-            if m_type == "error" or m_type == "stopped": #continue to recieve data until either the process crashes or stops
+            if m_type == "error" or m_type == "stopped" or m_type == "stderr": #continue to recieve data until either the process crashes or stops
                 print(m_type)
                 break
 asyncio.get_event_loop().run_until_complete(send_and_run())
