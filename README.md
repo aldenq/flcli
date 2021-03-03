@@ -15,7 +15,7 @@ flcli can be used simply as a command that allows you to run stuff on your Pi-To
 
 the sh file included is not critical to the running of FLCLI, it is simply included so that FLCLI can be integrated properly as a command on linux if that's desired.  
 
-
+no additional installation on the pi-top itself should be required as long as the pi-top works with further.
 
 ## examples:
 
