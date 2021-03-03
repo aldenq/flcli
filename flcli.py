@@ -5,10 +5,6 @@
 # python3.8 flcli.py 192.168.0.1 helloworld.py
 
 
-# -c flag can be used to show get syntax errors
-# python3.8 flcli.py 192.168.0.1 helloworld.py -c
-
-
 
 
 import requests
@@ -18,39 +14,21 @@ import ssl
 import json
 import sys
 import subprocess
-
+import fileinput
 
 
     
 
-ip = sys.argv[1].replace(".","-") #string replace is just to accommodate ip's in the format of a-b-c-d and a.b.c.d
+ip = sys.argv[1].replace("-",".") #string replace is just to accommodate ip's in the format of a-b-c-d and a.b.c.d
 file = sys.argv[2]
 
 
-if len(sys.argv) ==4:
-    flag = sys.argv[3]
-else:
-    flag = False
-    
-if flag == "-c":
-    subprocess.run(["python3.8" ,"-m","py_compile",file])
-
-
-    
 flink_port = "8028"
 
-URL = "https://" + ip + ".further-link.pi-top.com:" +flink_port+ "/status"
-websurl = "wss://" + ip + ".further-link.pi-top.com:" + flink_port
+websurl = "wss://" + ip + ":" + flink_port
+#.further-link.pi-top.com
 
 
-def check_online(): #check if target pi-top is online
-    r = requests.get(url = URL)  
-    data = r.text
-    if data == "OK":
-        print("device found")
-    else:
-        print("pi-top cannot be connected to")
-        exit()
         
 def get_code(file): #retrieves code from specified file and formats it to be sent
     f = open(file, "r")
@@ -75,26 +53,35 @@ def parse_message(message): #function borrowed from further-link(/usr/lib/pt-fur
 
     return msg_type, msg_data
 
+def fl_format(m_type,m_data):
+    output = {}
+    output["type"] = m_type
+    output["data"] = m_data
+    formatted = json.dumps(output)
+    #print(formatted)
+    return(formatted)
 
+
+#clr = get_stdin()
 async def send_and_run(): #takes python file and sends it over for the pi-top to execute, during executing listens for stdouts and prints them to screen
     ssl_context = ssl.SSLContext() #not secure
     ssl_context.check_hostname = False
     ssl_context.verify_mode = ssl.CERT_NONE
     uri = websurl + "/run-py"
-    
+    #fl_format("stdin","test123")
     async with websockets.connect(uri,ssl=ssl_context) as websocket:
         await websocket.send(code)
         
         while True:
             data = await websocket.recv()
-            m_type,m_data = parse_message(data) 
+            m_type,m_data = parse_message(data)
             
-            if m_type == "stdout": 
+            if m_type == "stdout" or m_type == "stderr": 
                 print(m_data["output"])
+            
             if m_type == "error" or m_type == "stopped": #continue to recieve data until either the process crashes or stops
                 print(m_type)
                 break
-check_online()
 asyncio.get_event_loop().run_until_complete(send_and_run())
 
 
