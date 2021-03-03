@@ -18,3 +18,9 @@ flcli can be used simply as a command that allows you to run stuff on your Pi-To
 examples:
 
 
+ python3.8 flcli.py 127.0.0.1 helloworld.py
+ python3.8 flcli.py 192.168.0.1 helloworld.py
+
+
+ -c flag can be used to show syntax errors
+ python3.8 flcli.py 192.168.0.1 helloworld.py -c
