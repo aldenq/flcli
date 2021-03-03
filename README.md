@@ -13,6 +13,8 @@ Usage:
 
 flcli can be used simply as a command that allows you to run stuff on your Pi-Top, it can also be integrated into other IDE's such that by clicking the "run" button it will run the code on the pi-top rather then on the local machine.
 
+the sh file included is not critical to the running of FLCLI, it is simply included so that FLCLI can be integrated properly as a command on linux if that's desired.  
+
 
 
 examples:
