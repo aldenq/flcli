@@ -18,7 +18,6 @@ the sh file included is not critical to the running of FLCLI, it is simply inclu
 
 no additional installation on the pi-top itself should be required as long as the pi-top works with further.
 
-while print statments will be sent back to the user, at the moment it does not appear that errors are, if your code is silently failing this could be why.
 
 ## examples:
 
