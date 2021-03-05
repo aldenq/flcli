@@ -1,5 +1,5 @@
 # flcli
-Further-Link Command Line Interface
+Further-Link (unofficial) Command Line Interface
 
 
 
